@@ -1,0 +1,48 @@
+<ion-content>
+  <ion-slides [options]="slideOptsOne">
+    <ion-slide *ngFor="let s of slideImage">
+      <img src="{{ s.img }}" alt="" />
+    </ion-slide>
+  </ion-slides>
+  <ion-card-header>
+    Welcome to our restaurant
+  </ion-card-header>
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12">
+        <ion-slides pager="false" [options]="slideOptsThree">
+          <ion-slide>
+            <ion-button>Hello</ion-button>
+          </ion-slide>
+          <ion-slide>
+            <ion-button>Hello</ion-button>
+          </ion-slide>
+          <ion-slide>
+            <ion-button>Hello</ion-button>
+          </ion-slide>
+        </ion-slides>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12">
+        <ion-slides pager="false" [options]="slideOptsTwo">
+          <ion-slide *ngFor="let p of plats">
+            <ion-card>
+              <img [routerLink]="['/detail-plat']" routerLinkActive="router-link-active" src="{{ p.img }}" />
+              <ion-card-content>
+                <p style="margin-left: -50px">
+                  {{ p.type }}
+                </p>
+                <ion-button (click)="apropos(p.text)" class="primary">
+                  A propos
+                </ion-button>
+              </ion-card-content>
+            </ion-card>
+          </ion-slide>
+        </ion-slides>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

@@ -1,0 +1,47 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-back-button style="width: 12px; float: left;" defaultHref="home" ></ion-back-button>
+    <ion-title style="margin-top: 12px">validation</ion-title>
+  </ion-toolbar>
+</ion-header>
+  
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12">
+        <ion-slides pager="false" [options]="slideOptsThree" >
+          <ion-slide>
+            <ion-button class="primary">Hello</ion-button>
+          </ion-slide>
+          <ion-slide>
+            <ion-button class="primary">Hello</ion-button>
+          </ion-slide>
+          <ion-slide>
+            <ion-button class="primary">Hello</ion-button>
+          </ion-slide>
+          <ion-slide>
+            <ion-button class="primary">Hello</ion-button>
+          </ion-slide>
+        </ion-slides>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-card-content style='background-image: url("../assets/images/clafoutis.jpg"); background-repeat: no-repeat; background-size: 100%'>
+    <ion-label>
+      <h1>Validation commande</h1>
+    </ion-label>
+    <ion-col size="12">
+      <ion-input style="background-color: #ffffff" placeholder="Votre nom" type="text" [(ngModel)]="nom" ></ion-input>
+    </ion-col>
+    <ion-col size="12">    
+      <ion-input style="background-color: #ffffff" placeholder="Numero banquaire" type="text" [(ngModel)]="numCredit" ></ion-input>
+    </ion-col>
+    <ion-col size="12">
+      <ion-input style="background-color: #ffffff" placeholder="Date arrivé" type="date" [(ngModel)]="dateArr" ></ion-input>
+    </ion-col>
+    <label>
+      <h2>Totale montant à payer: 12000 Ar</h2>
+    </label>
+    <ion-button (click)="onAdd()">Valider</ion-button>
+  </ion-card-content>
+</ion-content>
