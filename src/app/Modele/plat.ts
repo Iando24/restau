@@ -1,6 +1,6 @@
 export class Plat {
-    id:number;
-    title:String;
-    engredient:String;
-    prix:number;
+    id: number;
+    name: string;
+    price: string;
+    img: string;
 }

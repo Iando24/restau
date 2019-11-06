@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Plat } from '../Modele/plat';
 import { Router } from '@angular/router';
-import { Events } from '@ionic/angular';
 
 import { PlatService } from '../Service/plat.service';
+import { Plat } from '../Modele/plat';
 
 @Component({
   selector: 'app-home',
@@ -13,9 +12,10 @@ import { PlatService } from '../Service/plat.service';
 })
 export class HomePage implements OnInit{
 
-  rout: any = "";
-  panier: Array<Plat> = [];
-  fav: Array<String> = [];
+  produit = [];
+  categories = [];
+  image: Array<String> = [];
+  favorite: Array<Plat> = [];
   plat = [];
 
  	slideOptsOne = {
@@ -35,7 +35,7 @@ export class HomePage implements OnInit{
     initialSlide: 1,
     slidesPerView: 2,
     centeredSlides: true,
-    width: 250
+    width: 200
   };
 
   slideImage = [
@@ -50,38 +50,47 @@ export class HomePage implements OnInit{
     }
   ]
 
-  plats = [
-    {
-      text: "Salami",
-      img: "../assets/images/HomeDesktopSlide0.jpg"
-    },
-    {
-      text: "Salami",
-      img: "../assets/images/HomeDesktopSlide1.jpg"
-    },
-    {
-      text: "Salami",
-      img: "../assets/images/HomeDesktopSlide2.jpg"
-    },
-    {
-      text: "Salami",
-      img: "../assets/images/HomeDesktophtml_row3.jpg"
-    }
-  ]
-
-  constructor(public router: Router, public event: Events, private platService: PlatService) {}
+  constructor(public router: Router, private platService: PlatService) {
+    console.log(this.platService.getFavorite());
+  }
 
   ngOnInit(){
+    for(let i = 0; i < this.platService.getProducts().length; i++){
+      this.categories.push(this.platService.getProducts()[i].category);
+      for(let j = 0; j < this.platService.getProducts()[i].products.length; j++){
+        this.produit.push(this.platService.getProducts()[i].products[j]);
+      }
+    }
+    for(let i = 0; i < this.platService.getFavorite().length; i++){
+      this.favorite.push(this.platService.getFavorite()[i]);
+    }
+    console.log(this.produit);
   }
 
-  addPanier(panier) {
-    this.panier.push(panier);
-    console.log(this.panier);
+  trier(categorie){
+    for(let i = 0; i < this.platService.getProducts().length; i++){
+      if(this.platService.getProducts()[i].category === categorie){
+        this.produit = [];
+        for(let j = 0; j < this.platService.getProducts()[i].products.length; j++){
+          this.produit.push(this.platService.getProducts()[i].products[j]);
+        }
+      }
+    }
   }
 
-  apropos(fav) {
-    this.event.publish('my-message', fav);
-    return this.router.navigateByUrl('detail-plat', fav);
+  all(){
+    this.produit = [];
+    this.categories = [];
+    for(let i = 0; i < this.platService.getProducts().length; i++){
+      this.categories.push(this.platService.getProducts()[i].category);
+      for(let j = 0; j < this.platService.getProducts()[i].products.length; j++){
+        this.produit.push(this.platService.getProducts()[i].products[j]);
+      }
+    }
+  }
+
+  apropos(data) {
+    this.router.navigateByUrl('detail-plat/'+data);
   }
 
 }

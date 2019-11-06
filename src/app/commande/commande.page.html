@@ -1,0 +1,41 @@
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Commande</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-item *ngFor="let com of commande">
+        <ion-thumbnail slot="start">
+          <img src="{{ com.img }}">
+        </ion-thumbnail>
+        <ion-label>
+          <p>{{ com.name }}</p>
+          <p>{{ com.price }}</p>
+        </ion-label>
+        <ion-button (click)="remove(com)" type="button" shape="round" color="danger">
+          <ion-icon src="../../assets/icone/ic_remove_24px.svg"></ion-icon>
+        </ion-button>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
+
+<ion-tabs >
+  <ion-tab-bar slot="bottom" class="bg-image no-scroll">
+    <ion-tab-button [routerLink]="['/home']" routerLinkActive="router-link-active">
+      <ion-icon name="home"></ion-icon>
+      <ion-label>Acceuille</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button>
+      <ion-icon src="../assets/icone/ic_shopping_cart_24px.svg"></ion-icon>
+      <ion-label>Commande</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button [routerLink]="['/validation']" routerLinkActive="router-link-active">
+      <ion-icon src="../assets/icone/ic_done_24px.svg"></ion-icon>
+      <ion-label>Validation</ion-label>
+    </ion-tab-button>
+  </ion-tab-bar>
+</ion-tabs>

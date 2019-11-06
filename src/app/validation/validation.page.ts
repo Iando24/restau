@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from "@angular/router";
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-validation',
@@ -10,6 +12,7 @@ export class ValidationPage implements OnInit {
   nom: String = "";
   numCredit: String = "";
   dateArr: Date;
+  validationForm: FormGroup;
 
   slideOptsThree = {
     initialSlide: 1,
@@ -18,13 +21,25 @@ export class ValidationPage implements OnInit {
     width: 250
   };
 
-  constructor() { }
+  slideImage = [
+    {
+      img: "../assets/images/HomeDesktopSlide0.jpg"
+    },
+    {
+      img: "../assets/images/HomeDesktopSlide1.jpg"
+    },
+    {
+      img: "../assets/images/HomeDesktopSlide2.jpg"
+    }
+  ]
 
-  ngOnInit() {
+  constructor(private formBuilder:FormBuilder) { 
+    this.validationForm = this.formBuilder.group({
+      nom: ['']
+    })
   }
 
-  onAdd() {
-    console.log("Hello");
+  ngOnInit() {
   }
 
 }

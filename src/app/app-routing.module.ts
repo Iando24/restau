@@ -7,6 +7,7 @@ const routes: Routes = [
   { path: 'detail-plat', loadChildren: './detail-plat/detail-plat.module#DetailPlatPageModule' },
   { path: 'detail-plat/:id', loadChildren: './detail-plat/detail-plat.module#DetailPlatPageModule' },
   { path: 'validation', loadChildren: './validation/validation.module#ValidationPageModule' },
+  { path: 'commande', loadChildren: './commande/commande.module#CommandePageModule' },
 ];
 
 @NgModule({

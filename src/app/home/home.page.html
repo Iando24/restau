@@ -11,38 +11,46 @@
     <ion-row>
       <ion-col size="12">
         <ion-slides pager="false" [options]="slideOptsThree">
-          <ion-slide>
-            <ion-button>Hello</ion-button>
-          </ion-slide>
-          <ion-slide>
-            <ion-button>Hello</ion-button>
-          </ion-slide>
-          <ion-slide>
-            <ion-button>Hello</ion-button>
+          <ion-button (click)="all()">All</ion-button>
+          <ion-slide *ngFor="let categorie of categories">
+            <ion-button (click)="trier(categorie)">{{ categorie }}</ion-button>
           </ion-slide>
         </ion-slides>
       </ion-col>
     </ion-row>
   </ion-grid>
-  <ion-grid>
-    <ion-row>
-      <ion-col size="12">
-        <ion-slides pager="false" [options]="slideOptsTwo">
-          <ion-slide *ngFor="let p of plats">
-            <ion-card>
-              <img [routerLink]="['/detail-plat']" routerLinkActive="router-link-active" src="{{ p.img }}" />
-              <ion-card-content>
-                <p style="margin-left: -50px">
-                  {{ p.type }}
-                </p>
-                <ion-button (click)="apropos(p.text)" class="primary">
-                  A propos
-                </ion-button>
-              </ion-card-content>
-            </ion-card>
-          </ion-slide>
-        </ion-slides>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+  <ion-slides pager="false" [options]="slideOptsTwo">
+    <ion-slide *ngFor="let p of produit">
+      <ion-card>
+        <img [routerLink]="['/detail-plat/']+p.id" routerLinkActive="router-link-active" src="{{ p.img }}" />
+        <ion-card-content>
+          <p style="margin-left: -50px">
+            {{ p.name }}
+          </p>
+          <ion-button (click)="apropos(p.id)" class="primary">
+            A propos
+          </ion-button>
+        </ion-card-content>
+      </ion-card>
+    </ion-slide>
+  </ion-slides>
 </ion-content>
+
+<ion-tabs>
+  <ion-tab-bar slot="bottom" class="bg-image no-scroll">
+    <ion-tab-button>
+      <ion-icon name="home"></ion-icon>
+      <ion-label>Acceuille</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button [routerLink]="['/commande']" routerLinkActive="router-link-active">
+      <ion-icon src="../assets/icone/ic_shopping_cart_24px.svg"></ion-icon>
+      <ion-label>Commande</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button [routerLink]="['/validation']" routerLinkActive="router-link-active">
+      <ion-icon src="../assets/icone/ic_done_24px.svg"></ion-icon>
+      <ion-label>Validation</ion-label>
+    </ion-tab-button>
+  </ion-tab-bar>
+</ion-tabs>
